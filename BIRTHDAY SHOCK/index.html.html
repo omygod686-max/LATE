@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Smily Garuu</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      color: #eaf6ff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(120, 190, 255, 0.25), transparent 20%),
+        radial-gradient(circle at 80% 15%, rgba(90, 150, 255, 0.22), transparent 22%),
+        radial-gradient(circle at 75% 75%, rgba(140, 220, 255, 0.18), transparent 25%),
+        linear-gradient(145deg, #020b1e 0%, #07142e 20%, #0a1f44 45%, #0c2958 70%, #04101f 100%);
+      position: relative;
+      animation: blueShift 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes blueShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      background:
+        radial-gradient(circle at 15% 30%, rgba(255,255,255,0.18), transparent 18%),
+        radial-gradient(circle at 85% 20%, rgba(0, 183, 255, 0.12), transparent 25%),
+        radial-gradient(circle at 30% 80%, rgba(111, 196, 255, 0.12), transparent 22%),
+        radial-gradient(circle at 70% 70%, rgba(173, 216, 255, 0.08), transparent 20%);
+      filter: blur(35px);
+      animation: floatGlow 12s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      background:
+        linear-gradient(120deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.015) 40%, rgba(255,255,255,0.08) 100%);
+      opacity: 0.75;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0,0) scale(1); }
+      100% { transform: translate(20px,-15px) scale(1.08); }
+    }
+
+    .bg-blobs {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(75px);
+      opacity: 0.28;
+      animation: blobMove 16s ease-in-out infinite alternate;
+    }
+
+    .blob1 {
+      width: 320px;
+      height: 320px;
+      background: rgba(0, 149, 255, 0.28);
+      top: 8%;
+      left: 3%;
+    }
+
+    .blob2 {
+      width: 360px;
+      height: 360px;
+      background: rgba(76, 175, 255, 0.22);
+      top: 55%;
+      right: 6%;
+      animation-duration: 19s;
+    }
+
+    .blob3 {
+      width: 260px;
+      height: 260px;
+      background: rgba(173, 216, 255, 0.16);
+      bottom: 8%;
+      left: 35%;
+      animation-duration: 14s;
+    }
+
+    @keyframes blobMove {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(35px, -20px) scale(1.15); }
+    }
+
+    .hearts, .stars, .sparkles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .star, .heart, .sparkle {
+      position: absolute;
+      opacity: 0.75;
+    }
+
+    .star {
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      box-shadow:
+        0 0 10px rgba(255,255,255,0.9),
+        0 0 20px rgba(120, 200, 255, 0.7),
+        0 0 35px rgba(120, 180, 255, 0.35);
+      animation: twinkle 3s ease-in-out infinite;
+    }
+
+    .heart {
+      color: rgba(147, 210, 255, 0.18);
+      font-size: 16px;
+      animation: floatUp linear infinite;
+    }
+
+    .sparkle {
+      color: rgba(255,255,255,0.88);
+      font-size: 14px;
+      animation: sparkleFloat linear infinite;
+      text-shadow: 0 0 10px rgba(173, 216, 255, 0.8);
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.25; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.6); }
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(100vh) rotate(0deg); }
+      to { transform: translateY(-10vh) rotate(20deg); }
+    }
+
+    @keyframes sparkleFloat {
+      from { transform: translateY(100vh) scale(0.8) rotate(0deg); opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      to { transform: translateY(-10vh) scale(1.2) rotate(180deg); opacity: 0; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 30px 0 60px;
+    }
+
+    .panel {
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 0;
+    }
+
+    .panel.active { display: flex; }
+
+    .card {
+      width: 100%;
+      background: rgba(10, 30, 60, 0.42);
+      border: 1px solid rgba(170, 220, 255, 0.18);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 30px;
+      padding: 38px 30px;
+      box-shadow:
+        0 20px 60px rgba(0, 20, 50, 0.38),
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 0 35px rgba(70, 160, 255, 0.10);
+      text-align: center;
+      animation: fadeUp 0.8s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 5rem);
+      margin-bottom: 12px;
+      line-height: 1.1;
+      color: #f4fbff;
+      text-shadow:
+        0 0 10px rgba(255,255,255,0.35),
+        0 0 22px rgba(80, 170, 255, 0.35),
+        0 0 40px rgba(80, 170, 255, 0.12);
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 4vw, 3rem);
+      margin-bottom: 15px;
+      color: #eef9ff;
+      text-shadow: 0 0 15px rgba(120, 190, 255, 0.18);
+    }
+
+    h3 {
+      font-size: clamp(1.2rem, 2.5vw, 2rem);
+      margin-bottom: 12px;
+      color: #d8efff;
+    }
+
+    p {
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
+      line-height: 1.9;
+      color: #d8ecff;
+      max-width: 860px;
+      margin: 0 auto 12px;
+    }
+
+    .highlight {
+      background: linear-gradient(90deg, #8ad7ff, #d8f2ff, #6ec5ff, #b8e7ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sub {
+      opacity: 0.95;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      color: #8fd8ff;
+      font-weight: 700;
+    }
+
+    .birthday-crown {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 12px;
+      animation: crownGlow 2.5s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes crownGlow {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+        filter: drop-shadow(0 0 8px rgba(120, 200, 255, 0.5));
+      }
+      50% {
+        transform: translateY(-4px) scale(1.08);
+        filter: drop-shadow(0 0 16px rgba(120, 200, 255, 0.85));
+      }
+    }
+
+    .btns {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: 0.3s ease;
+    }
+
+    .next-btn {
+      background: linear-gradient(90deg, #1f8fff, #51b7ff, #7fd2ff);
+      color: white;
+      box-shadow:
+        0 10px 25px rgba(38, 132, 255, 0.32),
+        0 0 20px rgba(80, 170, 255, 0.24);
+    }
+
+    .next-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow:
+        0 14px 30px rgba(38, 132, 255, 0.40),
+        0 0 28px rgba(80, 170, 255, 0.38);
+    }
+
+    .ghost-btn {
+      background: rgba(255,255,255,0.08);
+      color: #d8f0ff;
+      border: 1px solid rgba(170, 220, 255, 0.18);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .ghost-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.13);
+    }
+
+    .photo-frame {
+      width: min(420px, 88vw);
+      aspect-ratio: 4 / 5;
+      margin: 18px auto 22px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid rgba(170, 220, 255, 0.22);
+      box-shadow:
+        0 18px 40px rgba(0, 10, 30, 0.35),
+        0 0 25px rgba(80, 170, 255, 0.08);
+      background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-placeholder {
+      padding: 20px;
+      color: #b9deff;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .quote {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: #a8dcff;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    .story-box {
+      text-align: left;
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.05);
+      border-radius: 22px;
+      padding: 24px;
+      border: 1px solid rgba(170, 220, 255, 0.14);
+    }
+
+    .slideshow-wrap {
+      max-width: 950px;
+      margin: 22px auto 0;
+    }
+
+    .slideshow {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 24px;
+      border: 2px solid rgba(170, 220, 255, 0.16);
+      box-shadow:
+        0 20px 48px rgba(0, 10, 30, 0.35),
+        0 0 28px rgba(80, 170, 255, 0.08);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide.active { opacity: 1; }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide-caption {
+      position: absolute;
+      left: 20px;
+      bottom: 18px;
+      background: rgba(8, 25, 50, 0.45);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      backdrop-filter: blur(8px);
+      color: #dff4ff;
+      border: 1px solid rgba(170, 220, 255, 0.14);
+    }
+
+    .dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.20);
+      border: 1px solid rgba(170, 220, 255, 0.25);
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .dot.active {
+      background: #73c9ff;
+      transform: scale(1.15);
+      box-shadow: 0 0 12px rgba(115, 201, 255, 0.65);
+    }
+
+    .memory-note {
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+      color: #dff2ff;
+      margin-top: 14px;
+      line-height: 1.9;
+    }
+
+    .tiny {
+      margin-top: 18px;
+      font-size: 0.95rem;
+      color: #a9d8ff;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 700px) {
+      .card { padding: 28px 18px; }
+      .story-box { padding: 18px; }
+      .btns { gap: 10px; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-blobs">
+    <span class="blob blob1"></span>
+    <span class="blob blob2"></span>
+    <span class="blob blob3"></span>
+  </div>
+
+  <div class="stars" id="stars"></div>
+  <div class="hearts" id="hearts"></div>
+  <div class="sparkles" id="sparkles"></div>
+
+  <div class="container">
+    <section class="panel active" id="panel-1">
+      <div class="card">
+        <div class="birthday-crown">👑</div>
+        <div class="sub">A Special Birthday Surprise</div>
+        <h1>Happy Birthday <span class="highlight">Smily Garuu</span></h1>
+        <p>
+          Today is not just another day. Today is the celebration of a beautiful soul,
+          a kind heart, a rare bond, and a person who made life brighter just by being in it.
+        </p>
+        <p class="quote">“Some people become memories. Some become home. You became both.”</p>
+        <div class="btns">
+          <button class="next-btn" onclick="goToPanel(2)">Open Your Surprise ✨</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-2">
+      <div class="card">
+        <div class="birthday-crown">💙</div>
+        <div class="sub">From Your Best Friend</div>
+        <h2>To the one who means <span class="highlight">more than words</span></h2>
+        <p>
+          You are not just my best friend. You are comfort in chaos, laughter in silence,
+          strength in weak moments, and one of the most unforgettable parts of my life.
+        </p>
+        <p>
+          On your birthday, I just want you to know that your presence matters,
+          your smile matters, your heart matters — and to me, you will always matter.
+        </p>
+        <div class="btns">
+          <button class="ghost-btn" onclick="goToPanel(1)">Previous</button>
+          <button class="next-btn" onclick="goToPanel(3)">Next Slide</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-3">
+      <div class="card">
+        <div class="birthday-crown">📸</div>
+        <h2>Beautiful Memory <span class="highlight">01</span></h2>
+        <div class="photo-frame">
+          <img src="1.jpg.jpeg" alt="Memory Photo 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="photo-placeholder" style="display:none;">Add your first photo here.<br>File path: <b>images/photo1.jpg</b></div>
+        </div>
+        <p>Every smile in this memory feels like proof that some friendships are truly heaven-sent.</p>
+        <div class="btns">
+          <button class="ghost-btn" onclick="goToPanel(2)">Previous</button>
+          <button class="next-btn" onclick="goToPanel(4)">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-4">
+      <div class="card">
+        <div class="birthday-crown">🌌</div>
+        <h2>Beautiful Memory <span class="highlight">02</span></h2>
+        <div class="photo-frame">
+          <img src="2.jpg.jpeg" alt="Memory Photo 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="photo-placeholder" style="display:none;">Add your second photo here.<br>File path: <b>images/photo2.jpg</b></div>
+        </div>
+        <p>Some pictures do not just capture faces. They capture feelings, moments, and the warmth we never want to lose.</p>
+        <div class="btns">
+          <button class="ghost-btn" onclick="goToPanel(3)">Previous</button>
+          <button class="next-btn" onclick="goToPanel(5)">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-5">
+      <div class="card">
+        <div class="birthday-crown">✨</div>
+        <h2>Beautiful Memory <span class="highlight">03</span></h2>
+        <div class="photo-frame">
+          <img src="S3.jpg.jpeg" alt="Memory Photo 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="photo-placeholder" style="display:none;">Add your third photo here.<br>File path: <b>images/photo3.jpg</b></div>
+        </div>
+        <p>In a world full of temporary people, you became one of the most permanent feelings in my life.</p>
+        <div class="btns">
+          <button class="ghost-btn" onclick="goToPanel(4)">Previous</button>
+          <button class="next-btn" onclick="goToPanel(6)">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-6">
+      <div class="card">
+        <div class="birthday-crown">🌙</div>
+        <h2>Words From The Heart</h2>
+        <p>
+          There are friendships that are casual, and then there are friendships that quietly become a part of your soul.
+          You are that kind of person for me. The kind who made ordinary days feel special and hard days feel lighter.
+        </p>
+        <p>
+          Your kindness, your energy, your way of being there — all of it created memories I will always treasure.
+          No matter how busy life becomes, some bonds never fade. Ours is one of them.
+        </p>
+        <div class="btns">
+          <button class="ghost-btn" onclick="goToPanel(5)">Previous</button>
+          <button class="next-btn" onclick="goToPanel(7)">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-7">
+      <div class="card">
+        <div class="birthday-crown">💌</div>
+        <h2>An Emotional Little Story</h2>
+        <div class="story-box">
+          <p>
+            Maybe one day, years from now, we will look back at these moments and smile at how beautifully simple they were.
+            The talks, the jokes, the random memories, the comfort, the unspoken understanding — these are the things that stay.
+          </p>
+          <p>
+            Life changes people, places, and routines. But some people leave a mark so deep that time can never erase it.
+            Smily, you are one of those rare people. You have a place in my memories that no distance, no silence, and no season can take away.
+          </p>
+          <p>
+            So on your birthday, I do not just wish you happiness. I wish you a life full of peace, love, success, beautiful surprises,
+            and people who value your heart the way it deserves to be valued.
+          </p>
+        </div>
+        <div class="btns">
+          <button class="ghost-btn" onclick="goToPanel(6)">Previous</button>
+          <button class="next-btn" onclick="goToPanel(8)">Open Slideshow</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-8">
+      <div class="card">
+        <div class="birthday-crown">🎞️</div>
+        <div class="sub">7 Photo Slideshow</div>
+        <h2>Moments That Deserve To <span class="highlight">Play Forever</span></h2>
+        <div class="slideshow-wrap">
+          <div class="slideshow" id="slideshow">
+            <div class="slide active"><img src="images/slide1.jpg" alt="Slide 1"><div class="slide-caption">Memory 1</div></div>
+            <div class="slide"><img src="S4.jpg.jpeg" alt="Slide 2"><div class="slide-caption">Memory 2</div></div>
+            <div class="slide"><img src="S5.jpg.jpeg" alt="Slide 3"><div class="slide-caption">Memory 3</div></div>
+            <div class="slide"><img src="S6.jpg.jpeg" alt="Slide 4"><div class="slide-caption">Memory 4</div></div>
+            <div class="slide"><img src="S7.jpg.jpeg" alt="Slide 5"><div class="slide-caption">Memory 5</div></div>
+            <div class="slide"><img src="S8.jpg.jpeg" alt="Slide 6"><div class="slide-caption">Memory 6</div></div>
+            <div class="slide"><img src="S8.jpg.jpeg" alt="Slide 7"><div class="slide-caption">Memory 7</div></div>
+          </div>
+          <div class="dots" id="dots"></div>
+        </div>
+        <p class="tiny">Replace these images with your 7 favorite photos to make the slideshow personal.</p>
+        <div class="btns">
+          <button class="ghost-btn" onclick="goToPanel(7)">Previous</button>
+          <button class="next-btn" onclick="goToPanel(9)">Final Surprise</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-9">
+      <div class="card">
+        <div class="birthday-crown">🎂</div>
+        <div class="sub">Final Memory</div>
+        <h2>You Will Always Be <span class="highlight">Unforgettable</span></h2>
+        <div class="photo-frame">
+          <img src="S5.jpg.jpeg" alt="Final Memory Photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="photo-placeholder" style="display:none;">Add your final memory photo here.<br>File path: <b>images/final-memory.jpg</b></div>
+        </div>
+        <p class="memory-note">
+          Happy Birthday, <b>Smily Garuu</b>.<br>
+          No matter where life goes, some people stay special forever.<br>
+          Some memories never fade. Some bonds never get replaced.<br>
+          And you… will always be one of the most beautiful parts of my memory.
+        </p>
+        <p class="quote">— With warmth, care, and countless wishes, Irfan</p>
+        <div class="btns">
+          <button class="ghost-btn" onclick="goToPanel(1)">Start Again</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const panels = document.querySelectorAll('.panel');
+    function goToPanel(number) {
+      panels.forEach(panel => panel.classList.remove('active'));
+      const target = document.getElementById(`panel-${number}`);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    const stars = document.getElementById('stars');
+    const hearts = document.getElementById('hearts');
+    const sparkles = document.getElementById('sparkles');
+
+    for (let i = 0; i < 90; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      star.style.animationDuration = (2 + Math.random() * 4) + 's';
+      stars.appendChild(star);
+    }
+
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '❤';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (10 + Math.random() * 8) + 's';
+      heart.style.animationDelay = Math.random() * 8 + 's';
+      hearts.appendChild(heart);
+    }
+
+    for (let i = 0; i < 34; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.innerHTML = '✦';
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.animationDuration = (6 + Math.random() * 8) + 's';
+      sparkle.style.animationDelay = Math.random() * 10 + 's';
+      sparkles.appendChild(sparkle);
+    }
+
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('dots');
+    let currentSlide = 0;
+
+    slides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (index === 0 ? ' active' : '');
+      dot.addEventListener('click', () => showSlide(index));
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+      currentSlide = index;
+    }
+
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 3000);
+  </script>
+</body>
+</html>
